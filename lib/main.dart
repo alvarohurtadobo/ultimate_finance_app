@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ultimate_finance_app/app_theme.dart';
 
 void main() {
@@ -13,12 +14,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isDark =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
-    return MaterialApp(
-      title: 'Flutter Demo',
-      darkTheme: AppThemes.greenFinanceDarkTheme,
-      theme: AppThemes.greenFinanceTheme,
-      themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return RepositoryProvider(
+      create: (context) {},
+      child: BlocProvider(
+        create: (context) {},
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          darkTheme: AppThemes.greenFinanceDarkTheme,
+          theme: AppThemes.greenFinanceTheme,
+          themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+          home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        ),
+      ),
     );
   }
 }
