@@ -44,3 +44,10 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 ios/GoogleService-Info.plist
+android/app/google-services.json
+firebase.json
+ios/Runner/GoogleService-Info.plist
+lib/blocs/
+lib/firebase_options.dart
+lib/repositories/
+macos/Runner/GoogleService-Info.plist
