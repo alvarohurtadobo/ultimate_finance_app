@@ -118,19 +118,36 @@ class EmailField extends StatelessWidget {
   }
 }
 
-class PasswordField extends StatelessWidget {
+class PasswordField extends StatefulWidget {
   final TextEditingController controller;
   const PasswordField({super.key, required this.controller});
 
   @override
+  State<PasswordField> createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<PasswordField> {
+  bool isObscured = true;
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      decoration: const InputDecoration(
+      controller: widget.controller,
+      decoration: InputDecoration(
         labelText: 'Contraseña',
         prefixIcon: Icon(Icons.lock),
+        suffixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              isObscured = !isObscured;
+            });
+          },
+          child: Icon(
+            isObscured ? Icons.remove_red_eye : Icons.remove_red_eye_outlined,
+          ),
+        ),
       ),
-      obscureText: true,
+      obscureText: isObscured,
       keyboardType: TextInputType.emailAddress,
       validator: Validator.validatePassword,
     );
