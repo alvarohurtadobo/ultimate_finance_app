@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
     return RepositoryProvider<AuthRepository>(
       create: (context) => AuthRepository(),
       child: BlocProvider<AuthBloc>(
-        create: (context) => AuthBloc(
-          authRepository: RepositoryProvider.of<AuthRepository>(context),
+        create: (localContext) => AuthBloc(
+          authRepository: RepositoryProvider.of<AuthRepository>(localContext),
         ),
         child: MaterialApp(
           title: 'Flutter Demo',
