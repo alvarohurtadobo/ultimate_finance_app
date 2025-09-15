@@ -12,30 +12,28 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Iniciar Sesion'),
-        ),
-        body: BlocListener<AuthBloc, AuthState>(
-          listener: (context, state) {
-            if (state.isSubmitting) {
-              showDialog(
-                  context: context,
-                  builder: (cotext) => const Center(
-                        child: CircularProgressIndicator(),
-                      ));
-            } else if (state.isAuthenticated) {
-              Navigator.of(context).pop();
-              context.go('/dashboard');
-            } else if (state.errorMessage != null) {
-              Navigator.of(context).pop();
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
-            }
-          },
-          child: const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: LoginForm(),
-          ),
-        ));
+      appBar: AppBar(title: const Text('Iniciar Sesion')),
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state.isSubmitting) {
+            showDialog(
+              context: context,
+              builder: (cotext) =>
+                  const Center(child: CircularProgressIndicator()),
+            );
+          } else if (state.isAuthenticated) {
+            Navigator.of(context).pop();
+            context.go('/dashboard');
+          } else if (state.errorMessage != null) {
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.errorMessage!)),
+            ); // TODO Check what it is for
+          }
+        },
+        child: const Padding(padding: EdgeInsets.all(16.0), child: LoginForm()),
+      ),
+    );
   }
 }
 
@@ -60,19 +58,14 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          EmailField(
-            controller: _emailController,
+          EmailField(controller: _emailController),
+          const SizedBox(height: 16),
+          PasswordField(controller: _passwordController),
+          const SizedBox(height: 24),
+          ElevatedButton(
+            onPressed: _signIn,
+            child: const Text('Iniciar sesion'),
           ),
-          const SizedBox(
-            height: 16,
-          ),
-          PasswordField(
-            controller: _passwordController,
-          ),
-          const SizedBox(
-            height: 24,
-          ),
-          ElevatedButton(onPressed: _signIn, child: const Text('Iniciar sesion'))
         ],
       ),
     );
@@ -81,18 +74,20 @@ class _LoginFormState extends State<LoginForm> {
   Future<void> _signIn() async {
     if (_formKey.currentState?.validate() == true) {
       try {
-        UserCredential userCredential =
-            await _auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Bienvenido, ${userCredential.user?.email}'),
-        ));
+        UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Bienvenido, ${userCredential.user?.email}')),
+        );
         Future.delayed(const Duration(seconds: 2), () {
           context.go('/dashboard');
         });
       } on FirebaseAuthException catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error ${e.message}'),
-        ));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error ${e.message}')));
       }
     }
   }
@@ -113,7 +108,10 @@ class EmailField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      decoration: const InputDecoration(labelText: 'Correo', prefixIcon: Icon(Icons.email)),
+      decoration: const InputDecoration(
+        labelText: 'Correo',
+        prefixIcon: Icon(Icons.email),
+      ),
       keyboardType: TextInputType.emailAddress,
       validator: Validator.validateEmail,
     );
@@ -128,7 +126,10 @@ class PasswordField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      decoration: const InputDecoration(labelText: 'Contrasena', prefixIcon: Icon(Icons.lock)),
+      decoration: const InputDecoration(
+        labelText: 'Contraseña',
+        prefixIcon: Icon(Icons.lock),
+      ),
       obscureText: true,
       keyboardType: TextInputType.emailAddress,
       validator: Validator.validatePassword,
