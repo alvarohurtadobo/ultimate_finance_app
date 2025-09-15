@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_finance/blocs/income_expense/income_expense_bloc.dart';
-import 'package:personal_finance/blocs/income_expense/income_expense_event.dart';
-import 'package:personal_finance/blocs/income_expense/income_expense_state.dart';
-import 'package:personal_finance/models/income_expense_model.dart';
+import 'package:ultimate_finance_app/blocs/income_expense/income_expense_bloc.dart';
+import 'package:ultimate_finance_app/blocs/income_expense/income_expense_event.dart';
+import 'package:ultimate_finance_app/blocs/income_expense/income_expense_state.dart';
+import 'package:ultimate_finance_app/blocs/models/income_expense_model.dart';
 
 class TransactionList extends StatelessWidget {
   const TransactionList({super.key, required List<IncomeExpense> transactions});

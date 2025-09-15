@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_finance/blocs/income_expense/income_expense_bloc.dart';
-import 'package:personal_finance/blocs/income_expense/income_expense_state.dart';
+import 'package:ultimate_finance_app/blocs/income_expense/income_expense_bloc.dart';
+import 'package:ultimate_finance_app/blocs/income_expense/income_expense_state.dart';
 import '../widgets/balance_card.dart';
 import '../widgets/transaction_list.dart';
 
