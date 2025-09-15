@@ -14,9 +14,7 @@ class WalletScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.appBarTheme.foregroundColor,
-      appBar: AppBar(
-        title: const Text('Wallet'),
-      ),
+      appBar: AppBar(title: const Text('Wallet')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -33,9 +31,11 @@ class WalletScreen extends StatelessWidget {
                   );
                 } else if (state is TransactionLoaded) {
                   final balance = state.transactions.fold<double>(
-                      0,
-                      (sum, transaction) =>
-                          transaction.type == 'income' ? sum + transaction.amount : sum - transaction.amount);
+                    0,
+                    (sum, transaction) => transaction.type == 'income'
+                        ? sum + transaction.amount
+                        : sum - transaction.amount,
+                  );
 
                   return BalanceCard(
                     title: 'Available Balance',

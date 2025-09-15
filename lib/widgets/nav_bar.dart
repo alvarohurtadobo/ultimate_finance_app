@@ -43,10 +43,7 @@ class NavBar extends StatelessWidget {
             backgroundColor: Colors.transparent,
             elevation: 0,
             items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
                 icon: Icon(Icons.calendar_today),
                 label: 'Spending',
@@ -76,8 +73,10 @@ class NavBar extends StatelessWidget {
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
                 builder: (context) {
-                  final TextEditingController amountController = TextEditingController();
-                  final TextEditingController descriptionController = TextEditingController();
+                  final TextEditingController amountController =
+                      TextEditingController();
+                  final TextEditingController descriptionController =
+                      TextEditingController();
 
                   return Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -87,11 +86,15 @@ class NavBar extends StatelessWidget {
                         TextField(
                           controller: amountController,
                           keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(labelText: 'Amount'),
+                          decoration: const InputDecoration(
+                            labelText: 'Amount',
+                          ),
                         ),
                         TextField(
                           controller: descriptionController,
-                          decoration: const InputDecoration(labelText: 'Description (optional)'),
+                          decoration: const InputDecoration(
+                            labelText: 'Description (optional)',
+                          ),
                         ),
                         const SizedBox(height: 16),
                         Row(
@@ -134,11 +137,18 @@ class NavBar extends StatelessWidget {
     );
   }
 
-  void _addTransaction(BuildContext context, String amount, String description, String type) {
+  void _addTransaction(
+    BuildContext context,
+    String amount,
+    String description,
+    String type,
+  ) {
     final parsedAmount = double.tryParse(amount);
 
     if (parsedAmount == null || parsedAmount <= 0) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter a valid amount')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter a valid amount')),
+      );
       return;
     }
 
@@ -152,6 +162,8 @@ class NavBar extends StatelessWidget {
     context.read<IncomeExpenseBloc>().add(AddTransaction(transaction));
 
     Navigator.of(context).pop();
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Transaction added successfully')));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Transaction added successfully')),
+    );
   }
 }

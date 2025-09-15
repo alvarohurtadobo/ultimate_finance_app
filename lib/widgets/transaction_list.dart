@@ -32,7 +32,9 @@ class TransactionList extends StatelessWidget {
                 amount: '\$${transaction.amount.toStringAsFixed(2)}',
                 icon: transaction.type == 'income' ? Icons.add : Icons.remove,
                 onDelete: () {
-                  context.read<IncomeExpenseBloc>().add(DeleteTransaction(transaction.id ?? ''));
+                  context.read<IncomeExpenseBloc>().add(
+                    DeleteTransaction(transaction.id ?? ''),
+                  );
                 },
               );
             },
@@ -77,21 +79,12 @@ class TransactionItem extends StatelessWidget {
           backgroundColor: Theme.of(context).primaryColorLight,
           child: Icon(icon, color: Theme.of(context).primaryColor),
         ),
-        title: Text(
-          title,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-        subtitle: Text(
-          date,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        title: Text(title, style: Theme.of(context).textTheme.bodyLarge),
+        subtitle: Text(date, style: Theme.of(context).textTheme.bodyMedium),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              amount,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
+            Text(amount, style: Theme.of(context).textTheme.bodyLarge),
             IconButton(
               icon: const Icon(Icons.delete, color: Colors.red),
               onPressed: onDelete,
