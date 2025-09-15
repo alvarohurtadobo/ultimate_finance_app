@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:personal_finance/blocs/auth/auth_bloc.dart';
-import 'package:personal_finance/blocs/auth/auth_event.dart';
-import 'package:personal_finance/widgets/profile_option.dart';
+import 'package:ultimate_finance_app/blocs/auth/auth_bloc.dart';
+import 'package:ultimate_finance_app/blocs/auth/auth_event.dart';
+import 'package:ultimate_finance_app/widgets/profile_option.dart';
 import '../widgets/profile_card.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -17,18 +17,12 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.appBarTheme.foregroundColor,
-      appBar: AppBar(
-        title: const Text('Profile'),
-      ),
+      appBar: AppBar(title: const Text('Profile')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ProfileCard(
-              name: '',
-              email: user?.email ?? '',
-              avatarUrl: null,
-            ),
+            ProfileCard(name: '', email: user?.email ?? '', avatarUrl: null),
             const SizedBox(height: 16),
             Expanded(
               child: ListView(
@@ -49,13 +43,15 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.logout,
                     title: 'Logout',
                     onTap: () async {
-                      final confimed = await _showLogoutConfirmationDialog(context);
+                      final confimed = await _showLogoutConfirmationDialog(
+                        context,
+                      );
                       if (confimed == true) {
-                        context.read<AuthBloc>().add(AuthLogouRequested());
+                        context.read<AuthBloc>().add(AuthLogoutRequested());
                         context.go('/login');
                       }
                     },
-                  )
+                  ),
                 ],
               ),
             ),
