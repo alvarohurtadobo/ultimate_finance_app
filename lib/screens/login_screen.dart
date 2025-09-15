@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Iniciar Sesion')),
+      appBar: AppBar(title: const Text('Inicio')),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state.isSubmitting) {
