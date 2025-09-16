@@ -14,8 +14,9 @@ import 'package:ultimate_finance_app/services/hive_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  Hive.initFlutter();
+  await Hive.initFlutter();
   final hiveService = HiveService();
+  await hiveService.init();
   runApp(MyApp(hiveService: hiveService));
 }
 

@@ -7,13 +7,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:ultimate_finance_app/main.dart';
+import 'package:ultimate_finance_app/services/hive_service.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    WidgetsFlutterBinding.ensureInitialized();
+
+    await Hive.initFlutter();
+    final hiveService = HiveService();
+    await hiveService.init();
+    await tester.pumpWidget(MyApp(hiveService: hiveService));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
