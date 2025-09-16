@@ -12,6 +12,20 @@ class AppRouter {
   // static int currentIndex = 0;
   static final GoRouter rounter = GoRouter(
     initialLocation: '/login',
+    redirect: (context, state) {
+      final user = FirebaseAuth.instance.currentUser;
+
+      final isLoginView = state.uri.toString() == '/login';
+
+      if (user == null) {
+        return isLoginView ? null : '/login';
+      }
+
+      if (isLoginView) return '/dashboard';
+
+      // In any other case do nothing:
+      return null;
+    },
     routes: [
       GoRoute(
         path: '/login',
