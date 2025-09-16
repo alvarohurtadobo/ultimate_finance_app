@@ -10,7 +10,7 @@ void main() {
     app.main();
     await tester.pumpAndSettle();
 
-    expect(find.text('Inicio').at(0), findsOneWidget);
+    expect(find.text('Inicio'), findsOneWidget);
 
     final loginButton = find.widgetWithText(ElevatedButton, 'Iniciar sesion');
 
@@ -23,6 +23,6 @@ void main() {
     await tester.enterText(passwordField, 'Canuto7000');
 
     await tester.tap(loginButton);
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(const Duration(seconds: 5));
   });
 }
