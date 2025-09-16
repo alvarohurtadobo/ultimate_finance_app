@@ -85,7 +85,11 @@ class _LoginFormState extends State<LoginForm> {
   @override
   void initState() {
     _emailController.text = 'a.hurtado.bo@gmail.com';
-    _emailController.text = 'alvarohurtado@hotmail.es';
+    _emailController.text = 'alvarohurtado@hotmail';
+    final authState = context.read<AuthBloc>().state;
+    if (authState.email.isNotEmpty) {
+      _emailController.text = authState.email;
+    }
     _passwordController.text = 'Canuto7000';
     _passwordController.text = '123456';
     super.initState();

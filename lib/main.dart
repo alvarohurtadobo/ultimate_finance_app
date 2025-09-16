@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
           BlocProvider<AuthBloc>(
             create: (context) => AuthBloc(
               authRepository: RepositoryProvider.of<AuthRepository>(context),
+              hiveService: RepositoryProvider.of<HiveService>(context),
             ),
           ),
           BlocProvider<IncomeExpenseBloc>(
