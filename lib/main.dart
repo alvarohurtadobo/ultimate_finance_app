@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ultimate_finance_app/app_router.dart';
 import 'package:ultimate_finance_app/app_theme.dart';
 import 'package:ultimate_finance_app/blocs/auth/auth_bloc.dart';
@@ -8,15 +9,19 @@ import 'package:ultimate_finance_app/blocs/income_expense/income_expense_bloc.da
 import 'package:ultimate_finance_app/blocs/income_expense/income_expense_event.dart';
 import 'package:ultimate_finance_app/repositories/auth_repository.dart';
 import 'package:ultimate_finance_app/repositories/income_expense_repository.dart';
+import 'package:ultimate_finance_app/services/hive_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  Hive.initFlutter();
+  final hiveService = HiveService();
+  runApp(MyApp(hiveService: hiveService));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({required this.hiveService, super.key});
+  final HiveService hiveService;
 
   // This widget is the root of your application.
   @override
@@ -31,6 +36,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<IncomeExpenseRepository>(
           create: (context) => IncomeExpenseRepository(),
         ),
+        RepositoryProvider.value(value: hiveService),
       ],
       child: MultiBlocProvider(
         // create: (localContext) => AuthBloc(
