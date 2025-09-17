@@ -1,10 +1,12 @@
 // import 'package:fl_chart/fl_chart.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ultimate_finance_app/blocs/income_expense/income_expense_bloc.dart';
 import 'package:ultimate_finance_app/blocs/income_expense/income_expense_state.dart';
 import 'package:ultimate_finance_app/widgets/budget_card.dart';
 import 'package:ultimate_finance_app/widgets/category_list.dart';
+import 'package:ultimate_finance_app/widgets/line_chart_widget.dart';
 // import 'package:ultimate_finance_app/widgets/line_chart_widget.dart';
 
 class SpendingScreen extends StatelessWidget {
@@ -55,19 +57,19 @@ class SpendingScreen extends StatelessWidget {
     );
   }
 
-  // List<FlSpot> _calculateMonthlyData(List transactions) {
-  //   final monthlyTotals = List.generate(12, (index) => 0.0);
+  List<FlSpot> _calculateMonthlyData(List transactions) {
+    final monthlyTotals = List.generate(12, (index) => 0.0);
 
-  //   for (var transaction in transactions) {
-  //     if (transaction.type == 'expense') {
-  //       final month = transaction.date.month - 1;
-  //       monthlyTotals[month] += transaction.amount;
-  //     }
-  //   }
+    for (var transaction in transactions) {
+      if (transaction.type == 'expense') {
+        final month = transaction.date.month - 1;
+        monthlyTotals[month] += transaction.amount;
+      }
+    }
 
-  //   return List.generate(
-  //     12,
-  //     (index) => FlSpot(index.toDouble(), monthlyTotals[index]),
-  //   );
-  // }
+    return List.generate(
+      12,
+      (index) => FlSpot(index.toDouble(), monthlyTotals[index]),
+    );
+  }
 }
