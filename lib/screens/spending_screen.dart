@@ -28,11 +28,11 @@ class SpendingScreen extends StatelessWidget {
                   if (state is TransactionLoading) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (state is TransactionLoaded) {
-                    // final monthlyData = _calculateMonthlyData(
-                    //   state.transactions,
-                    // );
-                    // return LineChartWidget(monthlyData: monthlyData);
-                    return Container();
+                    final monthlyData = _calculateMonthlyData(
+                      state.transactions,
+                    );
+                    return LineChartWidget(monthlyData: monthlyData);
+                    // return Container();
                   } else if (state is TransactionError) {
                     return Center(child: Text(state.message));
                   } else {
