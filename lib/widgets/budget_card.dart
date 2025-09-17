@@ -25,7 +25,7 @@ class BudgetCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1), // Replaces withOpacity
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -34,21 +34,12 @@ class BudgetCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: theme.textTheme.bodyMedium,
-          ),
+          Text(title, style: theme.textTheme.bodyMedium),
           const SizedBox(height: 8),
-          Text(
-            amount,
-            style: theme.textTheme.titleMedium,
-          ),
+          Text(amount, style: theme.textTheme.titleMedium),
           if (subtitle != null) ...[
             const SizedBox(height: 8),
-            Text(
-              subtitle!,
-              style: theme.textTheme.bodyMedium,
-            ),
+            Text(subtitle!, style: theme.textTheme.bodyMedium),
           ],
           if (progress != null) ...[
             const SizedBox(height: 16),

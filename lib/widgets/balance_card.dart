@@ -23,7 +23,7 @@ class BalanceCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1), // Replaces withOpacity
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -32,20 +32,11 @@ class BalanceCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
+          Text(title, style: Theme.of(context).textTheme.bodyMedium),
           const SizedBox(height: 8),
-          Text(
-            amount,
-            style: Theme.of(context).textTheme.displayLarge,
-          ),
+          Text(amount, style: Theme.of(context).textTheme.displayLarge),
           const SizedBox(height: 8),
-          Text(
-            subtitle,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
+          Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),
         ],
       ),
     );

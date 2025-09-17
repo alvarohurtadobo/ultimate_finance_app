@@ -9,7 +9,6 @@ import 'package:ultimate_finance_app/screens/wallet_screen.dart';
 import 'package:ultimate_finance_app/widgets/nav_bar.dart';
 
 class AppRouter {
-  // static int currentIndex = 0;
   static final GoRouter rounter = GoRouter(
     initialLocation: '/login',
     redirect: (context, state) {

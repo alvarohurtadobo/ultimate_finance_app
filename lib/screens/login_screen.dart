@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(title: const Text('Inicio')),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (BuildContext context, AuthState state) {
-          print("Listen to state: $state");
+          debugPrint("Listen to state: $state");
           if (state.isAuthenticated) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Bienvenido, ${state.email}')),
@@ -80,8 +80,6 @@ class _LoginFormState extends State<LoginForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
   @override
   void initState() {
     _emailController.text = 'a.hurtado.bo@gmail.com';
@@ -121,7 +119,7 @@ class _LoginFormState extends State<LoginForm> {
   Future<void> _signIn() async {
     if (_formKey.currentState?.validate() == true) {
       try {
-        print(
+        debugPrint(
           "About to send: ${_emailController.text}, ${_passwordController.text}",
         );
         context.read<AuthBloc>().add(

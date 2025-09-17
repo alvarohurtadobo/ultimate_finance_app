@@ -23,7 +23,7 @@ class ProfileCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1), // Replaces withOpacity
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -34,22 +34,20 @@ class ProfileCard extends StatelessWidget {
           CircleAvatar(
             radius: 30,
             backgroundColor: theme.primaryColorLight,
-            backgroundImage: avatarUrl != null ? NetworkImage(avatarUrl!) : null,
-            child: avatarUrl == null ? Icon(Icons.person, size: 30, color: theme.primaryColorDark) : null,
+            backgroundImage: avatarUrl != null
+                ? NetworkImage(avatarUrl!)
+                : null,
+            child: avatarUrl == null
+                ? Icon(Icons.person, size: 30, color: theme.primaryColorDark)
+                : null,
           ),
           const SizedBox(width: 16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                name,
-                style: theme.textTheme.titleMedium,
-              ),
+              Text(name, style: theme.textTheme.titleMedium),
               const SizedBox(height: 4),
-              Text(
-                email,
-                style: theme.textTheme.bodyMedium,
-              ),
+              Text(email, style: theme.textTheme.bodyMedium),
             ],
           ),
         ],

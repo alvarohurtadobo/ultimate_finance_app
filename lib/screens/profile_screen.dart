@@ -42,14 +42,13 @@ class ProfileScreen extends StatelessWidget {
                   ProfileOption(
                     icon: Icons.logout,
                     title: 'Logout',
-                    onTap: () async {
-                      final confimed = await _showLogoutConfirmationDialog(
-                        context,
-                      );
-                      if (confimed == true) {
-                        context.read<AuthBloc>().add(AuthLogoutRequested());
-                        context.go('/login');
-                      }
+                    onTap: () {
+                      _showLogoutConfirmationDialog(context).then((confimed) {
+                        if (confimed == true) {
+                          context.read<AuthBloc>().add(AuthLogoutRequested());
+                          context.go('/login');
+                        }
+                      });
                     },
                   ),
                 ],
