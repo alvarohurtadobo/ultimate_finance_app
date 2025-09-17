@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 // import 'package:fl_chart/fl_chart.dart';
 
 class LineChartWidget extends StatelessWidget {
-  // final List<FlSpot> monthlyData;
+  final List<FlSpot> monthlyData;
 
-  // const LineChartWidget({required this.monthlyData, super.key});
+  const LineChartWidget({required this.monthlyData, super.key});
 
   @override
   Widget build(BuildContext context) {
