@@ -9,7 +9,7 @@ import 'package:ultimate_finance_app/screens/wallet_screen.dart';
 import 'package:ultimate_finance_app/widgets/nav_bar.dart';
 
 class AppRouter {
-  static final GoRouter rounter = GoRouter(
+  static final GoRouter router = GoRouter(
     initialLocation: '/login',
     redirect: (context, state) {
       final user = FirebaseAuth.instance.currentUser;

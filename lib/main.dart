@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
               darkTheme: AppThemes.greenFinanceDarkTheme,
               theme: AppThemes.greenFinanceTheme,
               themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
-              routerConfig: AppRouter.rounter,
+              routerConfig: AppRouter.router,
               // home: const MyHomePage(title: 'Flutter Demo Home Page'),
             );
           },
