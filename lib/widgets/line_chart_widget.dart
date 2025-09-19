@@ -47,7 +47,20 @@ class LineChartWidget extends StatelessWidget {
               showTitles: true,
               reservedSize: 32,
               getTitlesWidget: (value, meta) {
-                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                const months = [
+                  'Jan',
+                  'Feb',
+                  'Mar',
+                  'Apr',
+                  'May',
+                  'Jun',
+                  'Jul',
+                  'Aug',
+                  'Sep',
+                  'Oct',
+                  'Nov',
+                  'Dec',
+                ];
                 return Text(
                   months[value.toInt()],
                   style: const TextStyle(fontSize: 12),
@@ -68,9 +81,7 @@ class LineChartWidget extends StatelessWidget {
         ),
         borderData: FlBorderData(
           show: true,
-          border: Border.all(
-            color: theme.primaryColorLight.withOpacity(0.5),
-          ),
+          border: Border.all(color: theme.primaryColorLight.withOpacity(0.5)),
         ),
         minX: 0,
         maxX: 11,
@@ -80,6 +91,5 @@ class LineChartWidget extends StatelessWidget {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
-  
   }
 }

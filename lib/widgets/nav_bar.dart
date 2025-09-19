@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ultimate_finance_app/app_theme.dart';
-import 'package:ultimate_finance_app/blocs/income_expense/income_expense_bloc.dart';
-import 'package:ultimate_finance_app/blocs/income_expense/income_expense_event.dart';
-import 'package:ultimate_finance_app/blocs/models/income_expense_model.dart';
+import 'package:ultimate_finance_app/feature/cash_flow/income_deprecated/presentation/bloc/income_expense_bloc.dart';
+import 'package:ultimate_finance_app/feature/cash_flow/income_deprecated/presentation/bloc/income_expense_event.dart';
+import 'package:ultimate_finance_app/feature/cash_flow/income_deprecated/data/model/income_expense_model.dart';
 
 class NavBar extends StatelessWidget {
   final int currentIndex;

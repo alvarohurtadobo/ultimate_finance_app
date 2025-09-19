@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ultimate_finance_app/blocs/auth/auth_event.dart';
-import 'package:ultimate_finance_app/blocs/auth/auth_state.dart';
+import 'package:ultimate_finance_app/feature/auth/presentation/bloc/auth_event.dart';
+import 'package:ultimate_finance_app/feature/auth/presentation/bloc/auth_state.dart';
 import 'package:ultimate_finance_app/repositories/auth_repository.dart';
 import 'package:ultimate_finance_app/services/hive_service.dart';
 

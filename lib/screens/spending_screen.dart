@@ -2,8 +2,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ultimate_finance_app/blocs/income_expense/income_expense_bloc.dart';
-import 'package:ultimate_finance_app/blocs/income_expense/income_expense_state.dart';
+import 'package:ultimate_finance_app/feature/cash_flow/income_deprecated/presentation/bloc/income_expense_bloc.dart';
+import 'package:ultimate_finance_app/feature/cash_flow/income_deprecated/presentation/bloc/income_expense_state.dart';
 import 'package:ultimate_finance_app/widgets/budget_card.dart';
 import 'package:ultimate_finance_app/widgets/category_list.dart';
 import 'package:ultimate_finance_app/widgets/line_chart_widget.dart';

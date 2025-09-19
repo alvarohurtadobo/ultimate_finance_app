@@ -1,4 +1,4 @@
-import 'package:ultimate_finance_app/blocs/models/income_expense_model.dart';
+import 'package:ultimate_finance_app/feature/cash_flow/income_deprecated/data/model/income_expense_model.dart';
 
 abstract class IncomeExpenseEvent {}
 

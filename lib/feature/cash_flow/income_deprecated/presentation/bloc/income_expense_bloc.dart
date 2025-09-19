@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ultimate_finance_app/blocs/income_expense/income_expense_event.dart';
-import 'package:ultimate_finance_app/blocs/income_expense/income_expense_state.dart';
+import 'package:ultimate_finance_app/feature/cash_flow/income_deprecated/presentation/bloc/income_expense_event.dart';
+import 'package:ultimate_finance_app/feature/cash_flow/income_deprecated/presentation/bloc/income_expense_state.dart';
 import 'package:ultimate_finance_app/repositories/income_expense_repository.dart';
 
 class IncomeExpenseBloc extends Bloc<IncomeExpenseEvent, IncomeExpenseState> {
