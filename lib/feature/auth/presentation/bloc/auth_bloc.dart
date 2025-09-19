@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ultimate_finance_app/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:ultimate_finance_app/feature/auth/presentation/bloc/auth_state.dart';
-import 'package:ultimate_finance_app/repositories/auth_repository.dart';
-import 'package:ultimate_finance_app/services/hive_service.dart';
+import 'package:ultimate_finance_app/feature/auth/data/services/auth_repository.dart';
+import 'package:ultimate_finance_app/common/services/hive_service.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required this.authRepository, required this.hiveService})

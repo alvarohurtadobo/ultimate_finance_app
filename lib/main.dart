@@ -5,11 +5,11 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ultimate_finance_app/app_router.dart';
 import 'package:ultimate_finance_app/app_theme.dart';
 import 'package:ultimate_finance_app/feature/auth/presentation/bloc/auth_bloc.dart';
-import 'package:ultimate_finance_app/feature/cash_flow/income_deprecated/presentation/bloc/income_expense_bloc.dart';
-import 'package:ultimate_finance_app/feature/cash_flow/income_deprecated/presentation/bloc/income_expense_event.dart';
-import 'package:ultimate_finance_app/repositories/auth_repository.dart';
-import 'package:ultimate_finance_app/repositories/income_expense_repository.dart';
-import 'package:ultimate_finance_app/services/hive_service.dart';
+import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_bloc.dart';
+import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_event.dart';
+import 'package:ultimate_finance_app/feature/auth/data/services/auth_repository.dart';
+import 'package:ultimate_finance_app/feature/income_deprecated/data/services/income_expense_repository.dart';
+import 'package:ultimate_finance_app/common/services/hive_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

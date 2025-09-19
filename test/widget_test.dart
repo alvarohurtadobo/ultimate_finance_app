@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:ultimate_finance_app/main.dart';
-import 'package:ultimate_finance_app/services/hive_service.dart';
+import 'package:ultimate_finance_app/common/services/hive_service.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
