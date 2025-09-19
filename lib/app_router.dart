@@ -101,15 +101,15 @@ class AppRouter {
       case '/login':
         return 0;
       case '/dashboard':
-        return 0;
-      case '/spending':
         return 1;
-      case '/wallet':
+      case '/spending':
         return 2;
-      case '/profile':
+      case '/wallet':
         return 3;
+      case '/profile':
+        return 5;
       default:
-        return 4;
+        return 5;
     }
   }
 }
