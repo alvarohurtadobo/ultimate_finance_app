@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ultimate_finance_app/app_theme.dart';
+import 'package:ultimate_finance_app/common/theme/app_theme.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_bloc.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_event.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/data/model/income_expense_model.dart';
