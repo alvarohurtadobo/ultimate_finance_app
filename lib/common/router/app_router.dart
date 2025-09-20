@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ultimate_finance_app/feature/dashboard/presentation/views/dashboard_screen.dart';
 import 'package:ultimate_finance_app/feature/auth/presentation/views/login_screen.dart';
-import 'package:ultimate_finance_app/screens/profile_screen.dart';
+import 'package:ultimate_finance_app/feature/auth/presentation/views/profile_screen.dart';
 import 'package:ultimate_finance_app/screens/spending_screen.dart';
 import 'package:ultimate_finance_app/feature/wallet/presentation/views/wallet_screen.dart';
 import 'package:ultimate_finance_app/common/widgets/nav_bar.dart';
