@@ -26,6 +26,11 @@ class IncomeExpense {
   }
 
   Map<String, dynamic> toJson() {
-    return {'amount': amount, 'description': description, 'date': date, 'type': type};
+    return {
+      'amount': amount,
+      'description': description,
+      'date': date,
+      'type': type,
+    };
   }
 }

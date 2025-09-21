@@ -11,57 +11,68 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        backgroundColor: Colors.white,
-        navigationBar: const CupertinoNavigationBar(
-          middle: Text('Dashboard'),
-        ),
-        child: BlocBuilder<IncomeExpenseBloc, IncomeExpenseState>(
-          builder: (context, state) {
-            if (state is TransactionLoading) {
-              return const Center(
-                child: CupertinoActivityIndicator(),
-              );
-            } else if (state is TransactionLoaded) {
-              final totalIncome = state.transactions
-                  .where((transaction) => transaction.type == 'income')
-                  .fold<double>(0, (sum, transaction) => sum + transaction.amount);
+      backgroundColor: Colors.white,
+      navigationBar: const CupertinoNavigationBar(middle: Text('Dashboard')),
+      child: BlocBuilder<IncomeExpenseBloc, IncomeExpenseState>(
+        builder: (context, state) {
+          if (state is TransactionLoading) {
+            return const Center(child: CupertinoActivityIndicator());
+          } else if (state is TransactionLoaded) {
+            final totalIncome = state.transactions
+                .where((transaction) => transaction.type == 'income')
+                .fold<double>(
+                  0,
+                  (sum, transaction) => sum + transaction.amount,
+                );
 
-              final totalExpense = state.transactions
-                  .where((transaction) => transaction.type == 'expense')
-                  .fold<double>(0, (sum, transaction) => sum + transaction.amount);
+            final totalExpense = state.transactions
+                .where((transaction) => transaction.type == 'expense')
+                .fold<double>(
+                  0,
+                  (sum, transaction) => sum + transaction.amount,
+                );
 
-              final availableBalance = totalIncome - totalExpense;
-              final budgetForMonth = totalIncome * 0.7;
+            final availableBalance = totalIncome - totalExpense;
+            final budgetForMonth = totalIncome * 0.7;
 
-              return Column(
-                children: [
-                  const SizedBox(
-                    height: 120,
-                  ),
-                  _buildBody(context, availableBalance, budgetForMonth, totalIncome, totalExpense),
-                ],
-              );
-            } else if (state is TransactionError) {
-              return Center(
-                child: Text('Error loading data: ${state.message}'),
-              );
-            } else {
-              return const Center(
-                child: Text('No data available'),
-              );
-            }
-          },
-        ));
+            return Column(
+              children: [
+                const SizedBox(height: 120),
+                _buildBody(
+                  context,
+                  availableBalance,
+                  budgetForMonth,
+                  totalIncome,
+                  totalExpense,
+                ),
+              ],
+            );
+          } else if (state is TransactionError) {
+            return Center(child: Text('Error loading data: ${state.message}'));
+          } else {
+            return const Center(child: Text('No data available'));
+          }
+        },
+      ),
+    );
   }
 
-  Widget _buildBody(BuildContext context, double availableBalance, double budget, double income, double expense) {
+  Widget _buildBody(
+    BuildContext context,
+    double availableBalance,
+    double budget,
+    double income,
+    double expense,
+  ) {
     return Container(
       decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [CupertinoColors.systemGreen, CupertinoColors.white],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.3, 0.7])),
+        gradient: LinearGradient(
+          colors: [CupertinoColors.systemGreen, CupertinoColors.white],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          stops: [0.3, 0.7],
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -124,9 +135,7 @@ class DashboardScreen extends StatelessWidget {
     return Card(
       color: CupertinoColors.systemBackground,
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -160,10 +169,7 @@ class DashboardScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  amount,
-                  selectionColor: CupertinoColors.systemGreen,
-                ),
+                Text(amount, selectionColor: CupertinoColors.systemGreen),
                 if (subtitle != null) ...[
                   const SizedBox(height: 8),
                   Text(
