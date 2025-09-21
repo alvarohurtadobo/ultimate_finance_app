@@ -23,7 +23,7 @@ class LineChartWidget extends StatelessWidget {
             dotData: const FlDotData(show: true),
             belowBarData: BarAreaData(
               show: true,
-              color: theme.primaryColor.withOpacity(0.1),
+              color: theme.primaryColor..withValues(alpha: 0.1),
             ),
           ),
         ],
@@ -74,14 +74,16 @@ class LineChartWidget extends StatelessWidget {
           drawHorizontalLine: true,
           getDrawingHorizontalLine: (value) {
             return FlLine(
-              color: theme.primaryColorLight.withOpacity(0.3),
+              color: theme.primaryColorLight.withValues(alpha: 0.3),
               strokeWidth: 1,
             );
           },
         ),
         borderData: FlBorderData(
           show: true,
-          border: Border.all(color: theme.primaryColorLight.withOpacity(0.5)),
+          border: Border.all(
+            color: theme.primaryColorLight..withValues(alpha: 0.5),
+          ),
         ),
         minX: 0,
         maxX: 11,

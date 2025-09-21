@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_bloc.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_state.dart';
 import 'package:ultimate_finance_app/feature/dashboard/presentation/widgets/budget_card.dart';
-import 'package:ultimate_finance_app/widgets/category_list.dart';
-import 'package:ultimate_finance_app/widgets/line_chart_widget.dart';
+import 'package:ultimate_finance_app/feature/spending/presentations/widgets/category_list.dart';
+import 'package:ultimate_finance_app/feature/spending/presentations/widgets/line_chart_widget.dart';
 // import 'package:ultimate_finance_app/widgets/line_chart_widget.dart';
 
 class SpendingScreen extends StatelessWidget {
