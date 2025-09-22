@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_bloc.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_state.dart';
-import '../widgets/balance_card.dart';
-import '../widgets/transaction_list.dart';
+import 'package:ultimate_finance_app/feature/wallet/presentation/widgets/balance_card.dart';
+import 'package:ultimate_finance_app/feature/wallet/presentation/widgets/transaction_list.dart';
 
 class WalletScreen extends StatelessWidget {
   const WalletScreen({super.key});

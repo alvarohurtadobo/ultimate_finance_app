@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ultimate_finance_app/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ultimate_finance_app/feature/auth/presentation/bloc/auth_event.dart';
+import 'package:ultimate_finance_app/feature/auth/presentation/widgets/profile_card.dart';
 import 'package:ultimate_finance_app/feature/auth/presentation/widgets/profile_option.dart';
-import '../widgets/profile_card.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
