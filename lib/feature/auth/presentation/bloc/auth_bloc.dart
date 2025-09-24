@@ -32,7 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           event.password,
         );
         // If success then save to hive:
-        hiveService.saveEmail(user?.email??'');
+        hiveService.saveEmail(user?.email ?? '');
         hiveService.setAuthenticated(true);
         debugPrint('Attempt success login for ${user?.email}');
         emit(
@@ -59,7 +59,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             isSubmitting: false,
             errorMessage: null,
             email: '',
-            password: ''
+            password: '',
           ),
         );
       } catch (e) {
