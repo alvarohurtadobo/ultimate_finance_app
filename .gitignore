@@ -47,9 +47,11 @@ firebase.json
 lib/firebase_options.dart
 macos/Runner/GoogleService-Info.plist
 
-
 # Firebase configs
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 android/app/src/*/google-services.json
 ios/Runner/Firebase/**/GoogleService-Info.plist
+
+# FVM Version Cache
+.fvm/
