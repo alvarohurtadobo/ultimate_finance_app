@@ -25,12 +25,12 @@ $DomainExceptionCopyWith<DomainException> get copyWith => _$DomainExceptionCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DomainException&&(identical(other.message, message) || other.message == message)&&(identical(other.code, code) || other.code == code)&&const DeepCollectionEquality().equals(other.exceptionType, exceptionType)&&const DeepCollectionEquality().equals(other.payload, payload));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DomainException&&(identical(other.message, message) || other.message == message)&&(identical(other.code, code) || other.code == code)&&(identical(other.exceptionType, exceptionType) || other.exceptionType == exceptionType)&&(identical(other.payload, payload) || other.payload == payload));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,message,code,const DeepCollectionEquality().hash(exceptionType),const DeepCollectionEquality().hash(payload));
+int get hashCode => Object.hash(runtimeType,message,code,exceptionType,payload);
 
 @override
 String toString() {
@@ -49,7 +49,7 @@ $Res call({
 });
 
 
-
+$DataExceptionCopyWith<$Res> get exceptionType;
 
 }
 /// @nodoc
@@ -62,16 +62,25 @@ class _$DomainExceptionCopyWithImpl<$Res>
 
 /// Create a copy of DomainException
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? message = null,Object? code = null,Object? exceptionType = freezed,Object? payload = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? message = null,Object? code = null,Object? exceptionType = null,Object? payload = freezed,}) {
   return _then(_self.copyWith(
 message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
-as int,exceptionType: freezed == exceptionType ? _self.exceptionType : exceptionType // ignore: cast_nullable_to_non_nullable
+as int,exceptionType: null == exceptionType ? _self.exceptionType : exceptionType // ignore: cast_nullable_to_non_nullable
 as DataException,payload: freezed == payload ? _self.payload : payload // ignore: cast_nullable_to_non_nullable
 as Payload?,
   ));
 }
-
+/// Create a copy of DomainException
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DataExceptionCopyWith<$Res> get exceptionType {
+  
+  return $DataExceptionCopyWith<$Res>(_self.exceptionType, (value) {
+    return _then(_self.copyWith(exceptionType: value));
+  });
+}
 }
 
 
@@ -227,12 +236,12 @@ _$DomainExceptionCopyWith<_DomainException> get copyWith => __$DomainExceptionCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DomainException&&(identical(other.message, message) || other.message == message)&&(identical(other.code, code) || other.code == code)&&const DeepCollectionEquality().equals(other.exceptionType, exceptionType)&&const DeepCollectionEquality().equals(other.payload, payload));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DomainException&&(identical(other.message, message) || other.message == message)&&(identical(other.code, code) || other.code == code)&&(identical(other.exceptionType, exceptionType) || other.exceptionType == exceptionType)&&(identical(other.payload, payload) || other.payload == payload));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,message,code,const DeepCollectionEquality().hash(exceptionType),const DeepCollectionEquality().hash(payload));
+int get hashCode => Object.hash(runtimeType,message,code,exceptionType,payload);
 
 @override
 String toString() {
@@ -251,7 +260,7 @@ $Res call({
 });
 
 
-
+@override $DataExceptionCopyWith<$Res> get exceptionType;
 
 }
 /// @nodoc
@@ -264,17 +273,26 @@ class __$DomainExceptionCopyWithImpl<$Res>
 
 /// Create a copy of DomainException
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? message = null,Object? code = null,Object? exceptionType = freezed,Object? payload = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? message = null,Object? code = null,Object? exceptionType = null,Object? payload = freezed,}) {
   return _then(_DomainException(
 message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
-as int,exceptionType: freezed == exceptionType ? _self.exceptionType : exceptionType // ignore: cast_nullable_to_non_nullable
+as int,exceptionType: null == exceptionType ? _self.exceptionType : exceptionType // ignore: cast_nullable_to_non_nullable
 as DataException,payload: freezed == payload ? _self.payload : payload // ignore: cast_nullable_to_non_nullable
 as Payload?,
   ));
 }
 
-
+/// Create a copy of DomainException
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DataExceptionCopyWith<$Res> get exceptionType {
+  
+  return $DataExceptionCopyWith<$Res>(_self.exceptionType, (value) {
+    return _then(_self.copyWith(exceptionType: value));
+  });
+}
 }
 
 // dart format on
