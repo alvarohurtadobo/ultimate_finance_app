@@ -2,10 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@UseCase(name: 'SimpleRawButton', type: ElevatedButton)
+@UseCase(name: 'SimpleRawButton', type: CustomButton)
 Widget simpleButton(BuildContext context) {
   return Center(
-    child: ElevatedButton(
+    child: CustomButton(
+      name: context.knobs.string(label: 'name', initialValue: 'Alvaro Hurtado'),
+    ),
+  );
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key, required this.name});
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
       onPressed: () {
         print('Pressed');
       },
@@ -15,10 +27,8 @@ Widget simpleButton(BuildContext context) {
         ),
         radius: 30,
         backgroundColor: Colors.green,
-        child: Text(
-          context.knobs.string(label: 'name', initialValue: 'Alvaro Hurtado'),
-        ),
+        child: Text(name),
       ),
-    ),
-  );
+    );
+  }
 }
