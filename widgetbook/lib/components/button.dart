@@ -3,7 +3,6 @@ import 'package:ultimate_finance_app/feature/wallet/presentation/widgets/button.
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-// part 'button_usecases.g.dart';
 
 @UseCase(name: 'SimpleRawButton', type: CustomButton)
 Widget simpleButton(BuildContext context) {
