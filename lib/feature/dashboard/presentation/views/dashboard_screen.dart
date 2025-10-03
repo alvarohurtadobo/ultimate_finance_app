@@ -39,7 +39,6 @@ class DashboardScreen extends StatelessWidget {
             return Column(
               children: [
                 const SizedBox(height: 120),
-                simpleButton(context),
                 CustomButton(name: 'Alvaro Maldonado',),
                 _buildBody(
                   context,
