@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ultimate_finance_app/common/utils/un_processable_request_dto.dart';
+import 'package:ultimate_finance_app/common/utils/unexpected_error_dto.dart';
 
 part 'data_exception.freezed.dart';
 

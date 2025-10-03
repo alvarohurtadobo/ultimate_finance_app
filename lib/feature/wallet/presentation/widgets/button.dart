@@ -8,7 +8,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        print('Pressed');
+        debugPrint('Pressed');
       },
       child: CircleAvatar(
         backgroundImage: NetworkImage(
