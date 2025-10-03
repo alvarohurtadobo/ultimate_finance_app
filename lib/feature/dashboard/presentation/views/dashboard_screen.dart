@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_bloc.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_state.dart';
 import 'package:ultimate_finance_app/feature/dashboard/presentation/widgets/budget_card.dart';
+import 'package:ultimate_finance_app/feature/wallet/presentation/widgets/button.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -38,6 +39,7 @@ class DashboardScreen extends StatelessWidget {
             return Column(
               children: [
                 const SizedBox(height: 120),
+                simpleButton(context),
                 _buildBody(
                   context,
                   availableBalance,
