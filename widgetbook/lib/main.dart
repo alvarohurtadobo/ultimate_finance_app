@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ultimate_finance_app/common/services/remote_config_service.dart';
 import 'package:widget_catalog/main.directories.g.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';

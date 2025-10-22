@@ -13,9 +13,8 @@ class RemoteConfigService {
     return fetched;
   }
 
-  String get welcomeMessage => _remoteConfig.getString('welcome_message');
-  String get version => _remoteConfig.getString('version');
-  bool get showPromo => _remoteConfig.getBool('show_promo');
+  bool get isMaintenance => _remoteConfig.getBool('maintenance');
+  String get appVersion => _remoteConfig.getString('version');
 }
 
 // import 'package:firebase_remote_config/firebase_remote_config.dart';
