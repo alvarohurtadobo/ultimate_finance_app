@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ultimate_finance_app/common/router/app_router.dart';
-import 'package:ultimate_finance_app/common/services/remote_config_service.dart';
 import 'package:ultimate_finance_app/common/theme/app_theme.dart';
 import 'package:ultimate_finance_app/di/injection_manual.dart';
 import 'package:ultimate_finance_app/feature/auth/presentation/bloc/auth_bloc.dart';
@@ -13,20 +12,6 @@ import 'package:ultimate_finance_app/feature/auth/data/services/auth_repository.
 import 'package:ultimate_finance_app/feature/income_deprecated/data/services/income_expense_repository.dart';
 import 'package:ultimate_finance_app/common/services/hive_service.dart';
 
-final remoteConfig = getIt<RemoteConfigService>();
-
-void checkMaintenance() {
-  final maintenance = remoteConfig.isMaintenance;
-  final version = remoteConfig.appVersion;
-
-  debugPrint('🛠️ Mantenimiento: $maintenance');
-  debugPrint('📱 Versión: $version');
-
-  if (maintenance) {
-    // podrías redirigir al usuario a una pantalla de mantenimiento
-  }
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -35,8 +20,6 @@ void main() async {
   await hiveService.init();
   
   configureDependenciesManual();
-
-  checkMaintenance();
 
   runApp(MyApp(hiveService: hiveService));
 }

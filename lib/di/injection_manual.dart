@@ -3,8 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:ultimate_finance_app/common/repositories/remote_config_bool_repository_impl.dart';
 import 'package:ultimate_finance_app/common/services/remote_config_service.dart';
+import 'package:ultimate_finance_app/di/injection.dart';
 
-final GetIt getIt = GetIt.instance;
+// final GetIt getIt = GetIt.instance;
 
 Future<void> configureDependenciesManual() async {
   // 1) Configurar Remote Config y hacer fetch+activate (equivalente a @preResolve)
