@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ultimate_finance_app/common/router/app_router.dart';
+import 'package:ultimate_finance_app/common/services/remote_config_service.dart';
 import 'package:ultimate_finance_app/common/theme/app_theme.dart';
 import 'package:ultimate_finance_app/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_bloc.dart';
@@ -17,6 +18,13 @@ void main() async {
   await Hive.initFlutter();
   final hiveService = HiveService();
   await hiveService.init();
+  final remoteConfigService = RemoteConfigService();
+
+  await remoteConfigService.initialize();
+
+  debugPrint('Welcome: ${remoteConfigService.welcomeMessage}');
+  debugPrint('Verions: ${remoteConfigService.version}');
+  debugPrint('Show Promo: ${remoteConfigService.showPromo}');
   runApp(MyApp(hiveService: hiveService));
 }
 
