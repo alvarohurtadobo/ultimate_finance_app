@@ -20,7 +20,6 @@ class RemoteConfigService {
 
 // import 'package:firebase_remote_config/firebase_remote_config.dart';
 
-
 // class RemoteConfigService {
 //   final FirebaseRemoteConfig _remoteConfig = FirebaseRemoteConfig.instance;
 

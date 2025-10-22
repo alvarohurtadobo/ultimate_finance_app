@@ -7,10 +7,12 @@ abstract class RemoteConfigModule {
   Future<FirebaseRemoteConfig> get remoteConfig async {
     final remoteConfig = FirebaseRemoteConfig.instance;
 
-    await remoteConfig.setConfigSettings(RemoteConfigSettings(
-      fetchTimeout: const Duration(seconds: 10),
-      minimumFetchInterval: const Duration(hours: 1),
-    ));
+    await remoteConfig.setConfigSettings(
+      RemoteConfigSettings(
+        fetchTimeout: const Duration(seconds: 10),
+        minimumFetchInterval: const Duration(hours: 1),
+      ),
+    );
 
     // defaults por si no hay valores remotos
     await remoteConfig.setDefaults(<String, dynamic>{
