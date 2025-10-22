@@ -22,5 +22,6 @@ class RemoteConfigService {
   }
 
   String get welcomeMessage => _remoteConfig.getString('welcome_message');
+  String get version => _remoteConfig.getString('version');
   bool get showPromo => _remoteConfig.getBool('show_promo');
 }

@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:ultimate_finance_app/common/services/remote_config_service.dart';
 import 'package:widget_catalog/main.directories.g.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 // import 'package:ultimate_finance_app/feature/wallet/presentation/widgets/button.dart';
 
-void main() {
+void main() async {
+  final remoteConfigService = RemoteConfigService();
+
+  await remoteConfigService.initialize();
+
+  debugPrint('Welcome: ${remoteConfigService.welcomeMessage}');
+  debugPrint('Verions: ${remoteConfigService.version}');
+  debugPrint('Show Promo: ${remoteConfigService.showPromo}');
   runApp(const MainApp());
 }
 
@@ -14,16 +22,21 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Widgetbook.material(directories: directories, addons: [
-      ViewportAddon([
-        Viewports.none,
-        IosViewports.iPad,
-        IosViewports.iPhone12ProMax,
-      ]),
-      MaterialThemeAddon(themes: [
-        WidgetbookTheme(name: 'Dark', data: ThemeData.dark()),
-        WidgetbookTheme(name: 'Light', data: ThemeData.light())
-      ])
-    ],);
+    return Widgetbook.material(
+      directories: directories,
+      addons: [
+        ViewportAddon([
+          Viewports.none,
+          IosViewports.iPad,
+          IosViewports.iPhone12ProMax,
+        ]),
+        MaterialThemeAddon(
+          themes: [
+            WidgetbookTheme(name: 'Dark', data: ThemeData.dark()),
+            WidgetbookTheme(name: 'Light', data: ThemeData.light()),
+          ],
+        ),
+      ],
+    );
   }
 }
