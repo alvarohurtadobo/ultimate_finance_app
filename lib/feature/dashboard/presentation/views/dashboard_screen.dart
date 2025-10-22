@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ultimate_finance_app/common/services/remote_config_service.dart';
-import 'package:ultimate_finance_app/di/injection.dart';
+// import 'package:ultimate_finance_app/di/injection.dart';
+import 'package:ultimate_finance_app/di/injection_manual.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_bloc.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_state.dart';
 import 'package:ultimate_finance_app/feature/dashboard/presentation/widgets/budget_card.dart';
@@ -27,7 +28,6 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    checkMaintenance();
     return CupertinoPageScaffold(
       backgroundColor: Colors.white,
       navigationBar: const CupertinoNavigationBar(middle: Text('Dashboard')),
@@ -56,7 +56,12 @@ class DashboardScreen extends StatelessWidget {
             return Column(
               children: [
                 const SizedBox(height: 120),
-                CustomButton(name: 'Alvaro Maldonado',),
+                CustomButton(
+                  name: 'Alvaro Maldonado',
+                  onPressed: () {
+                    checkMaintenance();
+                  },
+                ),
                 _buildBody(
                   context,
                   availableBalance,
