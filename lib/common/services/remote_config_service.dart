@@ -7,7 +7,6 @@ class RemoteConfigService {
 
   RemoteConfigService(this._remoteConfig);
 
-  // Si en algún momento necesitas reinit o forzar un fetch:
   Future<bool> refresh() async {
     final fetched = await _remoteConfig.fetchAndActivate();
     return fetched;

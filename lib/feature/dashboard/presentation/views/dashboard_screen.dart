@@ -58,7 +58,7 @@ class DashboardScreen extends StatelessWidget {
                 // CustomButton(
                 //   name: 'Alvaro Maldonado',
                 //   onPressed: () {
-                    
+
                 //   },
                 // ),
                 _buildBody(

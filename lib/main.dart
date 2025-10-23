@@ -19,7 +19,7 @@ void main() async {
   await Hive.initFlutter();
   final hiveService = HiveService();
   await hiveService.init();
-  
+
   configureDependenciesManual();
 
   runApp(MyApp(hiveService: hiveService));
