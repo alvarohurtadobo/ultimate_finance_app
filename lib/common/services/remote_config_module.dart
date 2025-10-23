@@ -14,13 +14,6 @@ abstract class RemoteConfigModule {
       ),
     );
 
-    // defaults por si no hay valores remotos
-    await remoteConfig.setDefaults(<String, dynamic>{
-      'welcome_message': 'Bienvenido por defecto',
-      'show_promo': false,
-    });
-
-    // fetch y activate aquí (async)
     await remoteConfig.fetchAndActivate();
 
     return remoteConfig;

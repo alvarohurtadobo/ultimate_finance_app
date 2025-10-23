@@ -7,7 +7,6 @@ import 'package:ultimate_finance_app/di/injection_manual.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_bloc.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_state.dart';
 import 'package:ultimate_finance_app/feature/dashboard/presentation/widgets/budget_card.dart';
-import 'package:ultimate_finance_app/feature/wallet/presentation/widgets/button.dart';
 
 final remoteConfig = getIt<RemoteConfigService>();
 
@@ -15,8 +14,8 @@ void checkMaintenance() {
   final maintenance = remoteConfig.isMaintenance;
   final version = remoteConfig.appVersion;
 
-  debugPrint('🛠️ Mantenimiento: $maintenance');
-  debugPrint('📱 Versión: $version');
+  debugPrint('Mantenimiento: $maintenance');
+  debugPrint('Versión: $version');
 
   if (maintenance) {
     // podrías redirigir al usuario a una pantalla de mantenimiento
@@ -56,12 +55,12 @@ class DashboardScreen extends StatelessWidget {
             return Column(
               children: [
                 const SizedBox(height: 120),
-                CustomButton(
-                  name: 'Alvaro Maldonado',
-                  onPressed: () {
-                    checkMaintenance();
-                  },
-                ),
+                // CustomButton(
+                //   name: 'Alvaro Maldonado',
+                //   onPressed: () {
+                    
+                //   },
+                // ),
                 _buildBody(
                   context,
                   availableBalance,
@@ -121,7 +120,9 @@ class DashboardScreen extends StatelessWidget {
             // Botón de objetivo de ahorro
             CupertinoButton.filled(
               child: const Text('Create a Saving Goal'),
-              onPressed: () {},
+              onPressed: () {
+                checkMaintenance();
+              },
             ),
 
             const SizedBox(height: 16),
