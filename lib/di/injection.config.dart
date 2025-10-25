@@ -21,27 +21,25 @@ import 'package:ultimate_finance_app/common/services/remote_config_module.dart'
 import 'package:ultimate_finance_app/common/services/remote_config_service.dart'
     as _i144;
 
-extension GetItInjectableX on _i174.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
-  Future<_i174.GetIt> init({
-    String? environment,
-    _i526.EnvironmentFilter? environmentFilter,
-  }) async {
-    final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    final remoteConfigModule = _$RemoteConfigModule();
-    await gh.factoryAsync<_i627.FirebaseRemoteConfig>(
-      () => remoteConfigModule.remoteConfig,
-      preResolve: true,
-    );
-    gh.lazySingleton<_i144.RemoteConfigService>(
-      () => _i144.RemoteConfigService(gh<_i627.FirebaseRemoteConfig>()),
-    );
-    gh.factory<_i599.RemoteConfigBoolRepository>(
-      () =>
-          _i82.RemoteConfigBoolRepositoryImpl(gh<_i627.FirebaseRemoteConfig>()),
-    );
-    return this;
-  }
+// initializes the registration of main-scope dependencies inside of GetIt
+Future<_i174.GetIt> initGetIt(
+  _i174.GetIt getIt, {
+  String? environment,
+  _i526.EnvironmentFilter? environmentFilter,
+}) async {
+  final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
+  final remoteConfigModule = _$RemoteConfigModule();
+  await gh.factoryAsync<_i627.FirebaseRemoteConfig>(
+    () => remoteConfigModule.remoteConfig,
+    preResolve: true,
+  );
+  gh.lazySingleton<_i144.RemoteConfigService>(
+    () => _i144.RemoteConfigService(gh<_i627.FirebaseRemoteConfig>()),
+  );
+  gh.factory<_i599.RemoteConfigBoolRepository>(
+    () => _i82.RemoteConfigBoolRepositoryImpl(gh<_i627.FirebaseRemoteConfig>()),
+  );
+  return getIt;
 }
 
 class _$RemoteConfigModule extends _i796.RemoteConfigModule {}
