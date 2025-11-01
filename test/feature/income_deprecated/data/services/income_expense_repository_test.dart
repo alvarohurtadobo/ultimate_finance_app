@@ -7,16 +7,39 @@ import 'package:ultimate_finance_app/feature/income_deprecated/data/services/inc
 // Mocks
 class MockFirebaseFirestore extends Mock implements FirebaseFirestore {}
 
+// Para clases sealed de Firestore, necesitamos usar Mock/Fake para pruebas
+// Esto es necesario para poder hacer pruebas unitarias con Firestore
+// ignore: subtype_of_sealed_class
 class MockCollectionReference extends Mock
     implements CollectionReference<Map<String, dynamic>> {}
 
-class MockQuerySnapshot extends Mock
-    implements QuerySnapshot<Map<String, dynamic>> {}
+// ignore: subtype_of_sealed_class
+class FakeQuerySnapshot extends Fake
+    implements QuerySnapshot<Map<String, dynamic>> {
+  @override
+  final List<QueryDocumentSnapshot<Map<String, dynamic>>> docs;
 
-class MockQueryDocumentSnapshot extends Mock
-    implements QueryDocumentSnapshot<Map<String, dynamic>> {}
+  FakeQuerySnapshot(this.docs);
+}
 
-class MockDocumentReference extends Mock
+// ignore: subtype_of_sealed_class
+class FakeQueryDocumentSnapshot extends Fake
+    implements QueryDocumentSnapshot<Map<String, dynamic>> {
+  @override
+  final String id;
+  final Map<String, dynamic> _data;
+
+  FakeQueryDocumentSnapshot(this.id, Map<String, dynamic> data) : _data = data;
+
+  @override
+  Map<String, dynamic> data() => _data;
+
+  @override
+  dynamic operator [](Object? field) => _data[field];
+}
+
+// ignore: subtype_of_sealed_class
+class FakeDocumentReference extends Mock
     implements DocumentReference<Map<String, dynamic>> {}
 
 void main() {
@@ -38,25 +61,27 @@ void main() {
       test('retorna lista de transacciones cuando la consulta es exitosa',
           () async {
         // Arrange
-        final mockSnapshot = MockQuerySnapshot();
-        final mockDoc1 = MockQueryDocumentSnapshot();
-        final mockDoc2 = MockQueryDocumentSnapshot();
+        final mockDoc1 = FakeQueryDocumentSnapshot(
+          'doc1',
+          {
+            'amount': 1000,
+            'description': 'Test income',
+            'date': Timestamp.fromDate(DateTime(2024, 1, 1)),
+            'type': 'income',
+          },
+        );
 
-        when(() => mockDoc1.id).thenReturn('doc1');
-        when(() => mockDoc1['amount']).thenReturn(1000);
-        when(() => mockDoc1['description']).thenReturn('Test income');
-        when(() => mockDoc1['date'])
-            .thenReturn(Timestamp.fromDate(DateTime(2024, 1, 1)));
-        when(() => mockDoc1['type']).thenReturn('income');
+        final mockDoc2 = FakeQueryDocumentSnapshot(
+          'doc2',
+          {
+            'amount': 500,
+            'description': 'Test expense',
+            'date': Timestamp.fromDate(DateTime(2024, 1, 2)),
+            'type': 'expense',
+          },
+        );
 
-        when(() => mockDoc2.id).thenReturn('doc2');
-        when(() => mockDoc2['amount']).thenReturn(500);
-        when(() => mockDoc2['description']).thenReturn('Test expense');
-        when(() => mockDoc2['date'])
-            .thenReturn(Timestamp.fromDate(DateTime(2024, 1, 2)));
-        when(() => mockDoc2['type']).thenReturn('expense');
-
-        when(() => mockSnapshot.docs).thenReturn([mockDoc1, mockDoc2]);
+        final mockSnapshot = FakeQuerySnapshot([mockDoc1, mockDoc2]);
         when(() => mockCollection.get())
             .thenAnswer((_) async => mockSnapshot);
 
@@ -81,8 +106,7 @@ void main() {
 
       test('retorna lista vacía cuando no hay transacciones', () async {
         // Arrange
-        final mockSnapshot = MockQuerySnapshot();
-        when(() => mockSnapshot.docs).thenReturn([]);
+        final mockSnapshot = FakeQuerySnapshot([]);
         when(() => mockCollection.get())
             .thenAnswer((_) async => mockSnapshot);
 
@@ -122,7 +146,7 @@ void main() {
           type: 'income',
         );
 
-        final mockDocRef = MockDocumentReference();
+        final mockDocRef = FakeDocumentReference();
         when(() => mockCollection.add(any())).thenAnswer((_) async => mockDocRef);
 
         // Act
@@ -170,12 +194,17 @@ void main() {
       test('elimina transacción exitosamente', () async {
         // Arrange
         const docId = 'doc123';
-        final mockDocRef = MockDocumentReference();
+        var deleteCalled = false;
+        final mockDocRef = FakeDocumentReference();
+        
+        // Sobrescribimos el método delete para verificar que se llama
+        when(() => mockDocRef.delete()).thenAnswer((_) async {
+          deleteCalled = true;
+        });
 
         when(() => mockFirestore.collection('transactions'))
             .thenReturn(mockCollection);
         when(() => mockCollection.doc(docId)).thenReturn(mockDocRef);
-        when(() => mockDocRef.delete()).thenAnswer((_) async => {});
 
         // Act
         await repository.deleteTransaction(docId);
@@ -183,7 +212,7 @@ void main() {
         // Assert
         verify(() => mockFirestore.collection('transactions')).called(1);
         verify(() => mockCollection.doc(docId)).called(1);
-        verify(() => mockDocRef.delete()).called(1);
+        expect(deleteCalled, isTrue);
       });
     });
   });
