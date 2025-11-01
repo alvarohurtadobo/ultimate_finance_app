@@ -38,9 +38,6 @@ class IncomeExpenseRepository {
   }
 
   Future<void> deleteTransaction(String docId) async {
-    await FirebaseFirestore.instance
-        .collection('transactions')
-        .doc(docId)
-        .delete();
+    await _firestore.collection('transactions').doc(docId).delete();
   }
 }
