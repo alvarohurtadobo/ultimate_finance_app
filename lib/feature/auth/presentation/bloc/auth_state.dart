@@ -49,6 +49,7 @@ class AuthState {
       email: email ?? this.email,
       password: password ?? this.password,
       isSubmitting: isSubmitting ?? this.isSubmitting,
+      errorMessage: errorMessage ?? this.errorMessage,
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
     );
   }

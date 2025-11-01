@@ -73,6 +73,52 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       }
     });
+
+    on<AuthGoogleLoginRequested>((event, emit) async {
+      emit(state.copyWith(isSubmitting: true, errorMessage: null));
+      try {
+        debugPrint('Attempt Google login');
+        final user = await authRepository.signInWithGoogle(
+          credential: event.credential,
+        );
+        hiveService.saveEmail(user?.email ?? '');
+        hiveService.setAuthenticated(true);
+        debugPrint('Attempt success Google login for ${user?.email}');
+        emit(
+          state.copyWith(
+            email: user?.email,
+            isSubmitting: false,
+            isAuthenticated: true,
+          ),
+        );
+      } catch (e) {
+        debugPrint('Attempt failed Google login for ${e.toString()}');
+        emit(state.copyWith(isSubmitting: false, errorMessage: e.toString()));
+      }
+    });
+
+    on<AuthAppleLoginRequested>((event, emit) async {
+      emit(state.copyWith(isSubmitting: true, errorMessage: null));
+      try {
+        debugPrint('Attempt Apple login');
+        final user = await authRepository.signInWithApple(
+          credential: event.credential,
+        );
+        hiveService.saveEmail(user?.email ?? '');
+        hiveService.setAuthenticated(true);
+        debugPrint('Attempt success Apple login for ${user?.email}');
+        emit(
+          state.copyWith(
+            email: user?.email,
+            isSubmitting: false,
+            isAuthenticated: true,
+          ),
+        );
+      } catch (e) {
+        debugPrint('Attempt failed Apple login for ${e.toString()}');
+        emit(state.copyWith(isSubmitting: false, errorMessage: e.toString()));
+      }
+    });
   }
 
   final AuthRepository authRepository;

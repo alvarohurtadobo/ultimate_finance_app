@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 abstract class AuthEvent {}
 
 class AuthEmailChanged extends AuthEvent {
@@ -23,3 +25,15 @@ class AuthLoginRequested extends AuthEvent {
 }
 
 class AuthLogoutRequested extends AuthEvent {}
+
+class AuthGoogleLoginRequested extends AuthEvent {
+  final AuthCredential credential;
+
+  AuthGoogleLoginRequested({required this.credential});
+}
+
+class AuthAppleLoginRequested extends AuthEvent {
+  final AuthCredential credential;
+
+  AuthAppleLoginRequested({required this.credential});
+}
