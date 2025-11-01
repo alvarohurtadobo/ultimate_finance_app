@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:ultimate_finance_app/feature/dashboard/presentation/views/dashboard_screen.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/data/model/income_expense_model.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_bloc.dart';
+import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_event.dart';
 import 'package:ultimate_finance_app/feature/income_deprecated/presentation/bloc/income_expense_state.dart';
 
 // Mock BLoC
