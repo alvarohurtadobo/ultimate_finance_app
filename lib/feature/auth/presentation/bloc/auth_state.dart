@@ -42,17 +42,21 @@ class AuthState {
     String? email,
     String? password,
     bool? isSubmitting,
-    String? errorMessage,
+    Object? errorMessage = _undefined,
     bool? isAuthenticated,
   }) {
     return AuthState(
       email: email ?? this.email,
       password: password ?? this.password,
       isSubmitting: isSubmitting ?? this.isSubmitting,
-      errorMessage: errorMessage ?? this.errorMessage,
+      errorMessage: errorMessage == _undefined 
+          ? this.errorMessage 
+          : errorMessage as String?,
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
     );
   }
+  
+  static const _undefined = Object();
 
   final String email;
   final String password;
